@@ -29,7 +29,7 @@ class Funcoes
 	Ano 1700 = século 17
 
      * */
-    public function SeculoAno(int $ano): int
+    public static function SeculoAno(int $ano): int
     {
         $seculo = 0;
         $ano = (string)$ano;
@@ -72,7 +72,7 @@ class Funcoes
 
      * */
 
-    public function PrimoAnterior(int $numero)
+    public static function PrimoAnterior(int $numero)
     {
         $contador = $numero - 1;
         if ($contador < 11) {
@@ -108,34 +108,33 @@ class Funcoes
 
     Exemplo para teste:
 
-	Array multidimensional = array (
-	array(25,22,18),
-	array(10,15,13),
-	array(24,5,2),
-	array(80,17,15)
-	);
-
-	resposta = 25
-
-     * */
-    public function SegundoMaior()
-    {
-        $multidimensional = array(
+	  $multidimensional = array(
             array(25, 22, 18),
             array(10, 15, 13),
             array(24, 5, 2),
             array(80, 17, 15)
         );
+	resposta = 25
 
-        $quantArrays = count($multidimensional);
+     * */
+    public static function SegundoMaior($array): int
+    {
 
-        // for ($row = 0; $row < 4; $row++) {;
-        //     for ($col = 0; $col < 3; $col++) {
-        //         // echo "<li>" . $cars[$row][$col] . "</li>";
+        $lista = [];
+        // percorrer o array multidimensional.
+        foreach ($array as $row) {
+            foreach ($row as $i => $a) {
+                // echo 'Indice: '. $i." -> Valor: ".$a."<br>";
+                // adiciona valor por valor no array lista.
+                array_push($lista, $a);
+            }
+        }
+        // array em ordem crescente.
+        sort($lista);
+        // pega penultimo valor.
+        $saida = array_slice($lista, -2, 1);
 
-        //     }
-        // }
-
+        return $saida[0];
     }
 
 
